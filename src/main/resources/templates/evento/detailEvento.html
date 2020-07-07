@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+	  <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="stylesheet" href="style/styleCss.css"/>
+      
+<title>Cadastrando meu Evento</title>
+</head>
+
+<body>
+<header>	
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo center">Evento</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="/eventos" class="waves-effect waves-light btn"><i class="material-icons left">list</i>Lista de Eventos</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+	<div th:each ="evento : ${evento}" class="container detailEvento">
+		<div class="row">
+		<h6 class="center-align">Detalhes do Evento</h6>
+			<p>Nome: <span th:text="${evento.nome}"></span></p>
+			<p>Local: <span th:text="${evento.local}"></span></p>
+			<p>Data: <span th:text="${evento.data}"></span></p>
+			<p>Horario: <span th:text="${evento.horario}"></span></p>
+		</div>
+	</div>	
+		<th:block th:include="mensagemValidacao"></th:block> 
+	<div class="container formConvidado">
+		<form method="post">
+			<div class="row">
+				<div class="input-field col s6">
+				Nome: <input type="text" value=""  name="nomeCompleto"/>
+				</div>
+				<div class="input-field col s3">
+				RG: <input type="text" value="" name="rg"/>
+				</div>
+				<button class="waves-effect waves-light btn" type="submit">Adicionar</button>
+			</div>
+		</form>
+	</div>
+	<h6 class="center-align">Lista de Convidados</h6>
+	<table class="container tabelaConvidado">
+		<thead>
+			<tr>
+				<th>Nome do Convidado</th>
+				<th>RG</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="convidado : ${convidados}">
+				<td><span th:text="${convidado.nomeCompleto}"></span></td>
+				<td><span th:text="${convidado.rg}"></span></td>
+			</tr>
+		</tbody>
+	
+	</table>
+	
+	
+	<!--JavaScript at end of body for optimized loading-->
+      <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+</body>
+</html>
